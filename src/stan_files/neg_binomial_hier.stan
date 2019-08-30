@@ -24,7 +24,7 @@ parameters {
   real beta_0;
   vector[n_covariates] beta;
   vector<lower=0>[n_strata] beta_bn;
-  vector<lower=0>[n_strata] mu;
+  real<lower=0> mu;
   vector<lower=0>[n_strata] sigma_st;
   vector[n_strata] beta_st_raw;
 }
@@ -50,7 +50,7 @@ model {
   beta_st_raw ~ normal(0, 1);
   sigma_st ~ normal(0, 1);
   for (i in 1:n_strata) {
-    beta_bn[i] ~ normal(mu[i], 1);
+    beta_bn[i] ~ normal(mu, 1);
   }
   mu ~ normal(0, 1);
 

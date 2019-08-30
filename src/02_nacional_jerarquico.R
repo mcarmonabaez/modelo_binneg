@@ -32,7 +32,7 @@ data_full <- list(N_f = nrow(data), n_f = data$ln_total,
                   stratum_f = dplyr::pull(data, estrato),
                   x_f = x_full)
 
-stan_fit <- sampling(sm, iter = 500, warmup = 200, 
+stan_fit <- sampling(sm, iter = 800, warmup = 200, 
                      chains = 3, data= c(data_sample, data_full), cores = 3)
 
 y_sims <- rstan::extract(stan_fit, 'y_out')[[1]]
